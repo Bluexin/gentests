@@ -1,0 +1,9 @@
+#PARSE_ESCAPES
+(this command allows for proper evaluations as defined by String.format(), not a simplified version)
+
+
+## Commands
+
+gentests:tpw.usage=/tpw [player] <dimension id>
+gentests:tpw.success=Successfully teleported %1$s to %2$s (ID %3$d)!
+gentests:tpw.current=Already in dimension %1$d.
