@@ -1,6 +1,7 @@
 package be.bluexin.generation
 
-import be.bluexin.generation.world1.WorldTeleporter
+import be.bluexin.generation.util.StructureLoader
+import be.bluexin.generation.world.WorldTeleporter
 import com.teamwizardry.librarianlib.features.kotlin.sendSpamlessMessage
 import net.minecraft.command.CommandBase
 import net.minecraft.command.ICommandSender
@@ -22,6 +23,11 @@ object CommandTpw : CommandBase() {
     override fun getName() = "tpw"
 
     override fun execute(server: MinecraftServer, sender: ICommandSender, args: Array<out String>) {
+        if (args.isNotEmpty() && args[0] == "print") {
+            StructureLoader.printGrid()
+            return
+        }
+
         val target = if (args.size == 2) getPlayer(server, sender, args[0]) else getCommandSenderAsPlayer(sender)
         val worldid = if (args.size == 1) parseInt(args[0]) else if (args.size == 2) parseInt(args[1]) else throw WrongUsageException(getUsage(sender))
         if (!DimensionManager.isDimensionRegistered(worldid)) throw NumberInvalidException()

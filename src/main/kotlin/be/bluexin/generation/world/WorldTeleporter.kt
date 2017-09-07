@@ -1,55 +1,28 @@
-package be.bluexin.generation.world1
+package be.bluexin.generation.world
 
 import be.bluexin.generation.blocks.BlockPortal
-import be.bluexin.generation.util.WorldUtils
 import be.bluexin.generation.util.isOurs
 import be.bluexin.generation.util.set
 import be.bluexin.generation.util.setPosition
-import com.teamwizardry.librarianlib.features.config.ConfigProperty
 import com.teamwizardry.librarianlib.features.kotlin.get
-import com.teamwizardry.librarianlib.features.kotlin.plus
 import com.teamwizardry.librarianlib.features.saving.serializers.builtin.basics.SerializeBlockPos
 import net.minecraft.entity.Entity
-import net.minecraft.init.Blocks
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.math.BlockPos
-import net.minecraft.world.DimensionType
 import net.minecraft.world.Teleporter
-import net.minecraft.world.WorldProvider
 import net.minecraft.world.WorldServer
 
+
 /**
- * Part of generationtests by Bluexin, released under GNU GPLv3.
+ * Part of generationtests by bluexin, released under GNU GPLv3.
  *
- * @author Bluexin
+ * @author bluexin
  */
-object World1Dim { // TODO: use DimensionManager.getNextFreeDimId, and save the result to config (once liblib allows saving to config kek)
-
-    @ConfigProperty(category = "dimIDs", comment = "ID for world1")
-    var world1ID: Int = 101
-        private set
-
-    val type = DimensionType.register("World 1", "_world1", world1ID, World1Provider::class.java, false)!!
-
-    fun register() {  // Not in init because liblib likes to classload early ;p
-        if (!WorldUtils.isOurs(world1ID)) WorldUtils.registerDimension(world1ID, type)
-    }
-}
-
-class World1Provider : WorldProvider() {
-    override fun getDimensionType() = World1Dim.type
-}
-
 class WorldTeleporter(worldIn: WorldServer) : Teleporter(worldIn) {
 
     override fun makePortal(entityIn: Entity): Boolean {
 //        println("makePortal $entityIn")
 
-        (-5..5).forEach { x ->
-            (-5..5).forEach { z ->
-                this.world.setBlockState(portalPos + BlockPos(x, 0, z), Blocks.STONE.defaultState)
-            }
-        }
         this.world.setBlockState(portalPos, BlockPortal.defaultState)
         return true
     }
@@ -89,7 +62,7 @@ class WorldTeleporter(worldIn: WorldServer) : Teleporter(worldIn) {
     private fun hasPortal() = this.world.isOurs && world.getBlockState(portalPos).block == BlockPortal
 
     companion object {
-        val portalPos = BlockPos(0, 200, 0)
+        val portalPos = BlockPos(0, 60, 0)
         const val TAG_NAME = "gentests"
     }
 }

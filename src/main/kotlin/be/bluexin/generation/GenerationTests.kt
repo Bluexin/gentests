@@ -1,7 +1,7 @@
 package be.bluexin.generation
 
 import be.bluexin.generation.blocks.BlockPortal
-import be.bluexin.generation.world1.World1Dim
+import be.bluexin.generation.world.World1Dim
 import com.teamwizardry.librarianlib.features.config.EasyConfigHandler
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent

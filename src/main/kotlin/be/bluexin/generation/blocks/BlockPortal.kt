@@ -2,7 +2,7 @@ package be.bluexin.generation.blocks
 
 import be.bluexin.generation.CommandTpw
 import be.bluexin.generation.util.isOurs
-import be.bluexin.generation.world1.WorldTeleporter
+import be.bluexin.generation.world.WorldTeleporter
 import com.teamwizardry.librarianlib.features.base.block.BlockMod
 import com.teamwizardry.librarianlib.features.kotlin.sendSpamlessMessage
 import net.minecraft.block.material.Material
